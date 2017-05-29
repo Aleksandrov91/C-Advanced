@@ -4,29 +4,27 @@ namespace _08.Recursive_Fibonacci
 {
     public class RecursiveFibonacci
     {
+        private static long[] memoization;
         public static void Main()
         {
             var n = int.Parse(Console.ReadLine());
-
-            Console.WriteLine(GetFibonacci(n, 1, 0, 1)); 
+            memoization = new long[n];
+            Console.WriteLine(GetFibonacci(n)); 
         }
 
-        public static long GetFibonacci(int n, int count, long a, long b)
+        public static long GetFibonacci(int n)
         {
-            var temp = a;
-            a = b;
-            b = temp + b;
-
-            count++;
-
-            if (count == n)
+            if (n <= 2)
             {
-                return b;
+                return 1;
             }
-            else
+
+            if (memoization[n - 1] != 0)
             {
-                return GetFibonacci(n, count, a, b);
-            }            
+                return memoization[n - 1];
+            }
+
+            return memoization[n - 1] = GetFibonacci(n - 1) + GetFibonacci(n - 2);
         }
     }
 }

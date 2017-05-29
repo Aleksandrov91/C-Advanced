@@ -10,60 +10,32 @@ namespace _11.Poisonous_Plants
 
         {
             var numberOfPlants = int.Parse(Console.ReadLine());
-            var argsArray = Console.ReadLine()
+            var plants = Console.ReadLine()
                 .Split(' ')
                 .Select(int.Parse)
                 .ToArray();
 
-            var plants = new Queue<int>();
-            var days = 1;
+            var comparePlants = new Stack<int>();
+            var deathDays = new int[numberOfPlants];
+            comparePlants.Push(0);
 
-            for (int i = 0; i < numberOfPlants; i++)
+            for (int i = 1; i < plants.Length; i++)
             {
-                plants.Enqueue(argsArray[i]);
+                var maxDays = 0;
+                while (comparePlants.Count != 0 && plants[comparePlants.Peek()] >= plants[i])
+                {
+                    maxDays = Math.Max(maxDays, deathDays[comparePlants.Pop()]);
+                }
+
+                if (comparePlants.Count > 0)
+                {
+                    deathDays[i] = maxDays + 1;
+                }
+
+                comparePlants.Push(i);
             }
 
-            while (true)
-            {
-                var plantsCount = plants.Count;
-
-                if (plantsCount < 2)
-                {
-                    Console.WriteLine(days - 1);
-                    break;
-                }
-
-                var plantMustDie = false;
-
-                for (int i = 0; i < plantsCount; i++)
-                {
-                    var currentPlant = plants.Dequeue();
-                    var neighborPlant = plants.Peek();
-
-                    if (plantMustDie)
-                    {
-                        plantMustDie = false;
-                    }
-                    else
-                    {
-                        plants.Enqueue(currentPlant);
-                    }
-
-                    if (currentPlant < neighborPlant)
-                    {
-                        plantMustDie = true;
-                    }
-                }
-
-                if (plantsCount == plants.Count)
-                {
-                    Console.WriteLine(days - 1);
-                    return;
-                }
-
-                days++;
-            }
-            
+            Console.WriteLine(deathDays.Max());
         }
     }
 }
