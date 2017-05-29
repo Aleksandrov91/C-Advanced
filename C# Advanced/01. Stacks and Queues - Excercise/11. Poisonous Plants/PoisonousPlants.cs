@@ -7,52 +7,63 @@ namespace _11.Poisonous_Plants
     public class PoisonousPlants
     {
         public static void Main()
+
         {
             var numberOfPlants = int.Parse(Console.ReadLine());
             var argsArray = Console.ReadLine()
                 .Split(' ')
                 .Select(int.Parse)
                 .ToArray();
-            var livePlants = new Stack<int>();
-            var tempPlants = new Stack<int>();
 
-            for (int i = 0; i < argsArray.Length; i++)
+            var plants = new Queue<int>();
+            var days = 1;
+
+            for (int i = 0; i < numberOfPlants; i++)
             {
-                livePlants.Push(argsArray[i]);
+                plants.Enqueue(argsArray[i]);
             }
-
-            var days = 0;
-            var currentCount = livePlants.Count;
 
             while (true)
             {
-                currentCount = livePlants.Count;
+                var plantsCount = plants.Count;
 
-                for (int i = 0; i < livePlants.Count;  i++)
+                if (plantsCount < 2)
                 {
-                    var currentPlant = livePlants.Pop();
-                    var neighborPlant = livePlants.Pop();
+                    Console.WriteLine(days - 1);
+                    break;
+                }
 
-                    if (currentPlant > neighborPlant)
+                var plantMustDie = false;
+
+                for (int i = 0; i < plantsCount; i++)
+                {
+                    var currentPlant = plants.Dequeue();
+                    var neighborPlant = plants.Peek();
+
+                    if (plantMustDie)
                     {
-                        tempPlants.Push(currentPlant);
+                        plantMustDie = false;
                     }
                     else
                     {
-                        tempPlants.Push(neighborPlant);
-                        tempPlants.Push(currentPlant);
+                        plants.Enqueue(currentPlant);
+                    }
+
+                    if (currentPlant < neighborPlant)
+                    {
+                        plantMustDie = true;
                     }
                 }
 
-                livePlants = tempPlants;
-                days++;
-                
-                if (currentCount == livePlants.Count)
+                if (plantsCount == plants.Count)
                 {
-                    Console.WriteLine(days);
+                    Console.WriteLine(days - 1);
                     return;
                 }
+
+                days++;
             }
+            
         }
     }
 }
