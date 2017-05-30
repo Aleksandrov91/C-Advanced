@@ -56,20 +56,18 @@ namespace BashSoft
         {
             if (IsDataInitialized)
             {
-                return true;
+                if (studentsByCourse.ContainsKey(courseName))
+                {
+                    return true;
+                }
+                else
+                {
+                    OutputWriter.DisplayException(ExceptionMessages.InexistingCourseInDataBase);
+                }
             }
             else
             {
                 OutputWriter.DisplayException(ExceptionMessages.DataNotInitializedExceptionMessage);
-            }
-
-            if (studentsByCourse.ContainsKey(courseName))
-            {
-                return true;
-            }
-            else
-            {
-                OutputWriter.DisplayException(ExceptionMessages.InexistingCourseInDataBase);
             }
 
             return false;
