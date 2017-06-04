@@ -6,34 +6,35 @@ namespace _08.Radioactive_Bunnies
 {
     public class RadioactiveBunnies
     {
-        private static bool playerAlive;
+        private static bool IsPlayerAlive;
+        private static bool IsPlayerEscaped;
+        private static int playerRowPosition;
+        private static int playerColPosition;
         public static void Main()
         {
-            playerAlive = true;
-            var elements = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+            IsPlayerAlive = true;
+            IsPlayerEscaped = false;
+            playerRowPosition = 0;
+            playerColPosition = 0;
 
-            var rows = elements[0];
-            var cols = elements[1];
+            var lairSize = Console.ReadLine().Split(' ')
+                .Select(int.Parse)
+                .ToArray();
+            var buuniesLair = new char[lairSize[0]][];
 
-            char[][] bunniesLair = new char[rows][];
-
-            var playerRowPosition = 0;
-            var playerColPosition = 0;
-
-            for (int row = 0; row < bunniesLair.Length; row++)
+            for (int row = 0; row < buuniesLair.Length; row++)
             {
-                bunniesLair[row] = new char[cols];
-                var line = Console.ReadLine();
-
-                for (int col = 0; col < line.Length; col++)
+                buuniesLair[row] = new char[lairSize[1]];
+                var input = Console.ReadLine();
+                for (int col = 0; col < buuniesLair[row].Length; col++)
                 {
-                    bunniesLair[row][col] = line[col];
-
-                    if (bunniesLair[row][col] == 'P')
+                    if (input[col] == 'P')
                     {
                         playerRowPosition = row;
                         playerColPosition = col;
                     }
+
+                    buuniesLair[row][col] = input[col];
                 }
             }
 
@@ -41,199 +42,121 @@ namespace _08.Radioactive_Bunnies
 
             for (int i = 0; i < playerCommands.Length; i++)
             {
-
-                switch (playerCommands[i])
+                if (!IsPlayerAlive || IsPlayerEscaped)
                 {
-                    case 'U':
-                        playerRowPosition = playerRowPosition - 1;
-
-                        if (playerRowPosition < 0 || playerRowPosition >= bunniesLair.Length)
-                        {
-                            playerAlive = true;
-                            bunniesLair[playerRowPosition][playerColPosition] = '.';
-                            MultiplieBunnies(bunniesLair);
-                            Print(bunniesLair);
-                            return;
-                        }
-
-                        var newPlayerCoords = bunniesLair[playerRowPosition][playerColPosition];
-
-                        if (newPlayerCoords == '.')
-                        {
-                            bunniesLair[playerRowPosition + 1][playerColPosition] = '.';
-                            bunniesLair[playerRowPosition][playerColPosition] = 'P';
-                        }
-                        else
-                        {
-                            playerAlive = false;
-                            Print(bunniesLair);
-                            return;
-                        }
-                        break;
-                    case 'D':
-                        playerRowPosition = playerRowPosition + 1;
-
-                        if (playerRowPosition < 0 || playerRowPosition >= bunniesLair.Length)
-                        {
-                            playerAlive = true;
-                            bunniesLair[playerRowPosition][playerColPosition] = '.';
-                            MultiplieBunnies(bunniesLair);
-                            Print(bunniesLair);
-                            return;
-                        }
-
-                        newPlayerCoords = bunniesLair[playerRowPosition][playerColPosition];
-
-                        if (newPlayerCoords == '.')
-                        {
-                            bunniesLair[playerRowPosition - 1][playerColPosition] = '.';
-                            bunniesLair[playerRowPosition][playerColPosition] = 'P';
-                        }
-                        else
-                        {
-                            playerAlive = false;
-                            Print(bunniesLair);
-                            return;
-                        }
-                        break;
-                    case 'L':
-                        playerColPosition = playerColPosition - 1;
-
-                        if (playerColPosition < 0 || playerColPosition >= bunniesLair[0].Length)
-                        {
-                            playerAlive = true;
-                            bunniesLair[playerRowPosition][playerColPosition + 1] = '.';
-                            MultiplieBunnies(bunniesLair);
-                            Print(bunniesLair);
-                            return;
-                        }
-
-                        newPlayerCoords = bunniesLair[playerRowPosition][playerColPosition];
-
-                        if (newPlayerCoords == '.')
-                        {
-                            bunniesLair[playerRowPosition][playerColPosition + 1] = '.';
-                            bunniesLair[playerRowPosition][playerColPosition] = 'P';
-                        }
-                        else
-                        {
-                            playerAlive = false;
-                            Print(bunniesLair);
-                            return;
-                        }
-                        break;
-                    case 'R':
-                        playerColPosition = playerColPosition + 1;
-
-                        if (playerColPosition < 0 || playerColPosition >= bunniesLair[0].Length)
-                        {
-                            playerAlive = true;
-                            bunniesLair[playerRowPosition][playerColPosition] = '.';
-                            MultiplieBunnies(bunniesLair);
-                            Print(bunniesLair);
-                            return;
-                        }
-
-                        newPlayerCoords = bunniesLair[playerRowPosition][playerColPosition];
-
-                        if (newPlayerCoords == '.')
-                        {
-                            bunniesLair[playerRowPosition][playerColPosition - 1] = '.';
-                            bunniesLair[playerRowPosition][playerColPosition] = 'P';
-                        }
-                        else
-                        {
-                            playerAlive = false;
-                            Print(bunniesLair);
-                            return;
-                        }
-                        break;
+                    break;
                 }
 
-                MultiplieBunnies(bunniesLair);
+                PlayerMoves(buuniesLair, playerCommands[i]);
 
-                if (!playerAlive)
-                {
-                    Print(bunniesLair);
-                    return;
-                }
+                MultiplieBunnies(buuniesLair);
             }
 
-            Console.WriteLine($"{playerRowPosition} {playerColPosition}");
+            PrintStatus(buuniesLair);
         }
 
-        private static void MultiplieBunnies(char[][] bunniesLair)
+        private static void PrintStatus(char[][] buuniesLair)
         {
-            List<KeyValuePair<int, int>> test = new List<KeyValuePair<int, int>>();
-
-            for (int i = 0; i < bunniesLair.Length; i++)
+            foreach (var row in buuniesLair)
             {
-                for (int j = 0; j < bunniesLair[i].Length; j++)
+                Console.WriteLine(string.Join("", row));
+            }
+
+            if (IsPlayerEscaped)
+            {
+                Console.WriteLine($"won: {playerRowPosition} {playerColPosition}");
+            }
+            else
+            {
+                Console.WriteLine($"dead: {playerRowPosition} {playerColPosition}");
+            }
+        }
+
+        private static void PlayerMoves(char[][] buuniesLair, char playerCommand)
+        {
+            buuniesLair[playerRowPosition][playerColPosition] = '.';
+            var newPlayerRowPosition = playerRowPosition;
+            var newPlayerColPosition = playerColPosition;
+
+            switch (playerCommand)
+            {
+                case 'U':
+                    newPlayerRowPosition--;
+                    break;
+                case 'D':
+                    newPlayerRowPosition++;
+                    break;
+                case 'L':
+                    newPlayerColPosition--;
+                    break;
+                case 'R':
+                    newPlayerColPosition++;
+                    break;
+            }
+
+            if (newPlayerRowPosition >= 0 && newPlayerColPosition >= 0 &&
+                newPlayerRowPosition < buuniesLair.Length && newPlayerColPosition < buuniesLair[playerRowPosition].Length)
+            {
+                playerRowPosition = newPlayerRowPosition;
+                playerColPosition = newPlayerColPosition;
+
+                if (buuniesLair[playerRowPosition][playerColPosition] == 'B')
                 {
-                    if (bunniesLair[i][j] == 'B')
+                    IsPlayerAlive = false;
+                }
+                else
+                {
+                    buuniesLair[playerRowPosition][playerColPosition] = 'P';
+                }
+            }
+            else
+            {
+                IsPlayerEscaped = true;
+            }
+        }
+
+        private static void MultiplieBunnies(char[][] buuniesLair)
+        {
+            var bunniesPosition = new HashSet<KeyValuePair<int, int>>();
+
+            for (int rowIndex = 0; rowIndex < buuniesLair.Length; rowIndex++)
+            {
+                for (int colIndex = 0; colIndex < buuniesLair[rowIndex].Length; colIndex++)
+                {
+                    if (buuniesLair[rowIndex][colIndex] == 'B')
                     {
-                        test.Add(new KeyValuePair<int, int>(i,j));
+                        bunniesPosition.Add(new KeyValuePair<int, int>(rowIndex, colIndex));
                     }
                 }
             }
 
-            for (int i = 0; i < test.Count; i++)
+            foreach (var keyValuePair in bunniesPosition)
             {
-                var row = test[i].Key;
-                var col = test[i].Value;
-
-                if (row < bunniesLair.Length - 1 && row > 0)
+                for (int row = keyValuePair.Key - 1; row <= keyValuePair.Key + 1; row++)
                 {
-                    PlayerDies(bunniesLair[row + 1][col]);
-                    bunniesLair[row + 1][col] = 'B';
+                    if (row >= 0 && row < buuniesLair.Length)
+                    {
+                        if (buuniesLair[row][keyValuePair.Value] == 'P')
+                        {
+                            IsPlayerAlive = false;
+                        }
+
+                        buuniesLair[row][keyValuePair.Value] = 'B';
+                    }
                 }
 
-                if (row > 0 && row < bunniesLair.Length - 1)
+                for (int col = keyValuePair.Value - 1; col <= keyValuePair.Value + 1; col++)
                 {
-                    PlayerDies(bunniesLair[row + 1][col]);
-                    bunniesLair[row - 1][col] = 'B';
+                    if (col >= 0 && col < buuniesLair[keyValuePair.Key].Length)
+                    {
+                        if (buuniesLair[keyValuePair.Key][col] == 'P')
+                        {
+                            IsPlayerAlive = false;
+                        }
+
+                        buuniesLair[keyValuePair.Key][col] = 'B';
+                    }
                 }
-
-                if (col < bunniesLair[row].Length - 1 && col > 0)
-                {
-                    PlayerDies(bunniesLair[row + 1][col]);
-                    bunniesLair[row][col + 1] = 'B';
-                }
-
-                if (col > 0 && col < bunniesLair[row].Length - 1)
-                {
-                    PlayerDies(bunniesLair[row + 1][col]);
-                    bunniesLair[row][col - 1] = 'B';
-                }
-            }
-        }
-
-        public static void PlayerDies(char check)
-        {
-            if (check == 'P')
-            {
-                check = 'B';
-                playerAlive = false;
-                return;
-            }
-
-            playerAlive = true;
-        }
-
-        public static void Print(char[][] bunniesLair)
-        {
-            foreach (var element in bunniesLair)
-            {
-                Console.WriteLine(string.Join("", element));
-            }
-
-            if (playerAlive)
-            {
-                Console.WriteLine($"won: 3 0");
-            }
-            else
-            {
-                Console.WriteLine($"dead: 3 1");
             }
         }
     }

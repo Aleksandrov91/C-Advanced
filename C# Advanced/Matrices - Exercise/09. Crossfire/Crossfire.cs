@@ -16,6 +16,48 @@ namespace _09.Crossfire
 
             string[][] matrix = new string[matrixRows][];
 
+            InitializeMatrix(matrix, matrixCols);
+
+            var command = Console.ReadLine();
+
+            while (command != "Nuke it from orbit")
+            {
+                var commandLine = command.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(int.Parse)
+                    .ToArray();
+
+                int shootRow = commandLine[0];
+                int shootCol = commandLine[1];
+                int shootRadius = commandLine[2];
+
+                RemoveRows(matrix, shootRow, shootCol, shootRadius);
+                RemoveCols(matrix, shootRow, shootCol, shootRadius);
+
+                for (int rowIndex = 0; rowIndex < matrix.Length; rowIndex++)
+                {
+                    for (int colIndex = 0; colIndex < matrix[rowIndex].Length; colIndex++)
+                    {
+                        if (matrix[rowIndex][colIndex] == null)
+                        {
+                            matrix[rowIndex] = matrix[rowIndex].Where(n => n != null).ToArray();
+                        }
+                    }
+
+                    if (matrix[rowIndex].Length < 1)
+                    {
+                        matrix = matrix.Take(rowIndex).Concat(matrix.Skip(rowIndex + 1)).ToArray();
+                        rowIndex--;
+                    }
+                }
+
+                command = Console.ReadLine();
+            }
+
+            PrintMatrix(matrix);
+        }
+
+        private static void InitializeMatrix(string[][] matrix, int matrixCols)
+        {
             int number = 1;
 
             for (int rowIndex = 0; rowIndex < matrix.Length; rowIndex++)
@@ -28,85 +70,35 @@ namespace _09.Crossfire
                     number++;
                 }
             }
+        }
 
-            var command = Console.ReadLine();
-
-            while (command != "Nuke it from orbit")
+        private static void RemoveCols(string[][] matrix, int shootRow, int shootCol, int shootRadius)
+        {
+            for (int col = shootCol - shootRadius; col <= shootCol + shootRadius; col++)
             {
-                var commandLine = command.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
-                    .Select(long.Parse)
-                    .ToArray();
-
-                long shootRow = commandLine[0];
-                long shootCol = commandLine[1];
-                long shootRadius = commandLine[2];
-
-                if (shootRow < 0 || shootRow >= matrix.Length ||
-                    shootCol < 0 || shootCol >= matrix[shootRow].Length)
+                if (shootRow >= 0 && col >= 0 && shootRow < matrix.Length && col < matrix[shootRow].Length)
                 {
-                    command = Console.ReadLine();
-                    continue;
+                    matrix[shootRow][col] = null;
                 }
-
-                matrix[shootRow][shootCol] = null;
-
-                for (long i = shootRow - shootRadius; i < shootRadius + shootRow; i++)
-                {
-                    if (i < 0 || i >= matrix.Length)
-                    {
-                        continue;
-                    }
-
-                    matrix[i][shootCol] = null;
-                }
-
-                for (long jIndex = shootCol - shootRadius; jIndex < shootCol + shootRadius; jIndex++)
-                {
-                    if (jIndex < 0 || jIndex >= matrix[0].Length)
-                    {
-                        continue;
-                    }
-
-                    matrix[shootRow][jIndex] = null;
-                }
-
-                for (int rowIndex = 0; rowIndex < matrix.Length; rowIndex++)
-                {
-                    for (int colIndex = 0; colIndex < matrix[rowIndex].Length; colIndex++)
-                    {
-                        if (matrix[rowIndex][colIndex] == null)
-                        {
-                            for (int i = colIndex + 1; i < matrix[rowIndex].Length; i++)
-                            {
-                                if (matrix[rowIndex][i] != null)
-                                {
-                                    matrix[rowIndex][colIndex] = matrix[rowIndex][i];
-                                    matrix[rowIndex][i] = null;
-                                    colIndex++;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                command = Console.ReadLine();
             }
+        }
 
-            for (int rowIndex = 0; rowIndex < matrix.Length; rowIndex++)
+        private static void RemoveRows(string[][] matrix, int shootRow, int shootCol, int shootRadius)
+        {
+            for (int row = shootRow - shootRadius; row <= shootRadius + shootRow; row++)
             {
-                for (int colIndex = 0; colIndex < matrix[rowIndex].Length; colIndex++)
+                if (row >= 0 && shootCol >= 0 && row < matrix.Length && shootCol < matrix[row].Length)
                 {
-                    if (matrix[rowIndex][colIndex] == null)
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        Console.Write(matrix[rowIndex][colIndex] + " ");
-                    }
+                    matrix[row][shootCol] = null;
                 }
+            }
+        }
 
-                Console.WriteLine();
+        private static void PrintMatrix(string[][] matrix)
+        {
+            foreach (var row in matrix)
+            {
+                Console.WriteLine(string.Join(" ", row));
             }
         }
     }
