@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace _11.Parking_System
@@ -7,11 +8,11 @@ namespace _11.Parking_System
     {
         static void Main()
         {
-            var parkingSize = Console.ReadLine().Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries)
+            var parkingSize = Console.ReadLine().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(int.Parse)
                 .ToArray();
 
-            int[,] parking = new int[parkingSize[0], parkingSize[1]];
+            var parking = new Dictionary<int, HashSet<int>>();
 
             var input = Console.ReadLine();
 
@@ -23,42 +24,66 @@ namespace _11.Parking_System
                 var entryRow = lineArgs[0];
                 var parkingRow = lineArgs[1];
                 var parkingCol = lineArgs[2];
-                var parkingColumn = 0;
+                var parkingIsFull = false;
+                var distance = Math.Abs(entryRow - parkingRow) + 1;
 
-                if (parking[parkingRow, parkingCol] == 0)
+                if (IsEmpty(parking, parkingRow, parkingCol))
                 {
-                    parkingColumn = parkingCol;
+                    distance += parkingCol;
                 }
                 else
                 {
-                    for (int i = 1; i < parkingSize[1] - 1; i++)
+                    for (int i = 1; i < parkingSize[1]; i++)
                     {
-                        if (parkingCol - i > 0 && parking[parkingRow, parkingCol - i] == 0)
+                        if (parkingCol - i > 0 && IsEmpty(parking, parkingRow, parkingCol - i))
                         {
-                            parkingColumn = parkingCol - i;
+                            distance += parkingCol - i;
+                            parkingIsFull = false;
                             break;
                         }
-                        else if (parkingCol + i < parking.GetLength(1) && parking[parkingRow, parkingCol + i] == 0)
+                        else if (parkingCol + i < parkingSize[1] && IsEmpty(parking, parkingRow, parkingCol + i))
                         {
-                            parkingColumn = parkingCol + i;
+                            distance += parkingCol + i;
+                            parkingIsFull = false;
                             break;
                         }
+
+                        parkingIsFull = true;
                     }
                 }
 
-                if (parkingColumn == 0)
+                if (parkingIsFull)
                 {
                     Console.WriteLine($"Row {parkingRow} full");
                 }
                 else
                 {
-                    parking[parkingRow, parkingColumn] = -1;
-                    var distance = Math.Abs(parkingRow - entryRow) + 1 + parkingColumn;
                     Console.WriteLine(distance);
                 }
 
                 input = Console.ReadLine();
             }
+        }
+
+        private static bool IsEmpty(Dictionary<int, HashSet<int>> parking, int parkingRow, int parkingCol)
+        {
+            if (parking.ContainsKey(parkingRow))
+            {
+                if (parking[parkingRow].Contains(parkingCol))
+                {
+                    return false;
+                }
+                else
+                {
+                    parking[parkingRow].Add(parkingCol);
+                }
+            }
+            else if (!parking.ContainsKey(parkingRow))
+            {
+                parking[parkingRow] = new HashSet<int>() { parkingCol };
+            }
+
+            return true;
         }
     }
 }
