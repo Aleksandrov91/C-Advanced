@@ -1,8 +1,8 @@
-﻿using System;
-using System.Text.RegularExpressions;
-
-namespace _08.Extract_Quotations
+﻿namespace _08.Extract_Quotations
 {
+    using System;
+    using System.Text.RegularExpressions;
+
     public class ExtractQuotations
     {
         public static void Main()

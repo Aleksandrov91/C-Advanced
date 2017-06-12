@@ -1,8 +1,8 @@
-﻿using System;
-using System.Text.RegularExpressions;
-
-namespace _01.Match_Count
+﻿namespace _01.Match_Count
 {
+    using System;
+    using System.Text.RegularExpressions;
+
     public class MatchCount
     {
         public static void Main()

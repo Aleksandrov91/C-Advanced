@@ -1,8 +1,8 @@
-﻿using System;
-using System.Text.RegularExpressions;
-
-namespace _06.Valid_Usernames
+﻿namespace _06.Valid_Usernames
 {
+    using System;
+    using System.Text.RegularExpressions;
+
     public class ValidUsernames
     {
         public static void Main()

@@ -1,8 +1,8 @@
-﻿using System;
-using System.Text.RegularExpressions;
-
-namespace _07.Valid_Time
+﻿namespace _07.Valid_Time
 {
+    using System;
+    using System.Text.RegularExpressions;
+
     public class ValidTime
     {
         public static void Main()

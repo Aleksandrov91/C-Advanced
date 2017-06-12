@@ -1,8 +1,8 @@
-﻿using System;
-using System.Text.RegularExpressions;
-
-namespace _02.Vowel_Count
+﻿namespace _02.Vowel_Count
 {
+    using System;
+    using System.Text.RegularExpressions;
+
     public class VowelCount
     {
         public static void Main()

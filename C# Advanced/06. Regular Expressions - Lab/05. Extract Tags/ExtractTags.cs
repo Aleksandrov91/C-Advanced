@@ -1,8 +1,8 @@
-﻿using System;
-using System.Text.RegularExpressions;
-
-namespace _05.Extract_Tags
+﻿namespace _05.Extract_Tags
 {
+    using System;
+    using System.Text.RegularExpressions;
+
     public class ExtractTags
     {
         public static void Main()

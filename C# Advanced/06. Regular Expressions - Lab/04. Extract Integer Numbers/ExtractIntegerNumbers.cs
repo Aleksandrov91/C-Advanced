@@ -1,8 +1,8 @@
-﻿using System;
-using System.Text.RegularExpressions;
-
-namespace _04.Extract_Integer_Numbers
+﻿namespace _04.Extract_Integer_Numbers
 {
+    using System;
+    using System.Text.RegularExpressions;
+
     public class ExtractIntegerNumbers
     {
         public static void Main()
