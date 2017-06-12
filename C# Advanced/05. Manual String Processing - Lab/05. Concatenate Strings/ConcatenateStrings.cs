@@ -1,8 +1,8 @@
-﻿using System;
-using System.Text;
-
-namespace _05.Concatenate_Strings
+﻿namespace _05.Concatenate_Strings
 {
+    using System;
+    using System.Text;
+
     public class ConcatenateStrings
     {
         public static void Main()

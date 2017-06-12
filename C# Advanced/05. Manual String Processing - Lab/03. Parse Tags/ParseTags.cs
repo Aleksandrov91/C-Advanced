@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace _03.Parse_Tags
+﻿namespace _03.Parse_Tags
 {
+    using System;
+
     public class ParseTags
     {
         public static void Main()
@@ -18,6 +18,7 @@ namespace _03.Parse_Tags
                 {
                     break;
                 }
+
                 var startIndex = text.IndexOf("<upcase>");
                 var endIndex = text.IndexOf("</upcase>");
 

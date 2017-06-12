@@ -1,14 +1,13 @@
-﻿using System;
-
-namespace _02.Parse_URLs
+﻿namespace _02.Parse_URLs
 {
+    using System;
+
     public class ParseURLs
     {
         public static void Main()
         {
             var url = Console.ReadLine();
-
-            var urlArgs = url.Split(new[] {"://"}, StringSplitOptions.RemoveEmptyEntries);
+            var urlArgs = url.Split(new[] { "://" }, StringSplitOptions.RemoveEmptyEntries);
 
             if (urlArgs.Length != 2 || !urlArgs[1].Contains("/"))
             {
@@ -24,7 +23,6 @@ namespace _02.Parse_URLs
             Console.WriteLine($"Protocol = {protocol}");
             Console.WriteLine($"Server = {server}");
             Console.WriteLine($"Resources = {resources}");
-
         }
     }
 }
