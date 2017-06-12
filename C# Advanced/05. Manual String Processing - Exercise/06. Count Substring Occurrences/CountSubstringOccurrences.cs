@@ -1,8 +1,7 @@
-﻿using System;
-using System.Text.RegularExpressions;
-
-namespace _06.Count_Substring_Occurrences
+﻿namespace _06.Count_Substring_Occurrences
 {
+    using System;
+
     public class CountSubstringOccurrences
     {
         public static void Main()

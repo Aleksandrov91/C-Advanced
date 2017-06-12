@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace _11.Palindromes
+﻿namespace _11.Palindromes
 {
+    using System;
+    using System.Collections.Generic;
+
     public class Palindromes
     {
         public static void Main()
         {
-            var delimiters = new char[] {' ', ',', '.', '?', '!'};
+            var delimiters = new char[] { ' ', ',', '.', '?', '!' };
             var input = Console.ReadLine().Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
             var result = new SortedSet<string>();
 

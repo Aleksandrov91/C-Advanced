@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Numerics;
-
-namespace _05.Convert_from_base_N_to_base_10
+﻿namespace _05.Convert_from_base_N_to_base_10
 {
-    class ConvertToDecimal
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Numerics;
+
+    public class ConvertToDecimal
     {
-        static void Main()
+        public static void Main()
         {
             var input = Console.ReadLine().Split(' ');
 

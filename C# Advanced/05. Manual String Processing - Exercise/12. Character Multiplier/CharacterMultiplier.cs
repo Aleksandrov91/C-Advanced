@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace _12.Character_Multiplier
+﻿namespace _12.Character_Multiplier
 {
+    using System;
+    using System.Collections.Generic;
+
     public class CharacterMultiplier
     {
         public static void Main()

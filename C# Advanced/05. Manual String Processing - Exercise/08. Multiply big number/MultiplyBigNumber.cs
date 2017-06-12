@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace _08.Multiply_big_number
+﻿namespace _08.Multiply_big_number
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
     public class MultiplyBigNumber
     {
         public static void Main()

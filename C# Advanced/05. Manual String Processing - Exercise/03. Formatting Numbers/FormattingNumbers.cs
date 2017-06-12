@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace _03.Formatting_Numbers
+﻿namespace _03.Formatting_Numbers
 {
+    using System;
+
     public class FormattingNumbers
     {
         public static void Main()

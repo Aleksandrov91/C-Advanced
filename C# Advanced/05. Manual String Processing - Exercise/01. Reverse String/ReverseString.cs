@@ -1,9 +1,8 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-
-namespace _01.Reverse_String
+﻿namespace _01.Reverse_String
 {
+    using System;
+    using System.Text;
+
     public class ReverseString
     {
         public static void Main()
@@ -22,6 +21,7 @@ namespace _01.Reverse_String
             {
                 sb.Append(input[i]);
             }
+
             return sb.ToString();
         }
     }

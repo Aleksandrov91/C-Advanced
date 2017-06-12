@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace _02.String_Length
+﻿namespace _02.String_Length
 {
+    using System;
+
     public class StringLength
     {
         public static void Main()

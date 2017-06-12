@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-
-namespace _04.Convert_from_base_10_to_base_N
+﻿namespace _04.Convert_from_base_10_to_base_N
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Numerics;
+
     public class ConvertToBase
     {
         public static void Main()

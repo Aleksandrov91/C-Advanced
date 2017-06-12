@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace _07.Sum_big_numbers
+﻿namespace _07.Sum_big_numbers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
     public class SumBigNumbers
     {
         public static void Main()
@@ -19,8 +19,8 @@ namespace _07.Sum_big_numbers
 
         private static string SumNumbers(string firstNum, string secondNum)
         {
-            Stack<int> firstNumStack = new Stack<int>(firstNum.ToCharArray().Select(n => (int) char.GetNumericValue(n)));
-            Stack<int> secondNumStack = new Stack<int>(secondNum.ToCharArray().Select(n => (int) char.GetNumericValue(n)));
+            Stack<int> firstNumStack = new Stack<int>(firstNum.ToCharArray().Select(n => (int)char.GetNumericValue(n)));
+            Stack<int> secondNumStack = new Stack<int>(secondNum.ToCharArray().Select(n => (int)char.GetNumericValue(n)));
             StringBuilder result = new StringBuilder();
             int sumCurrentNums = 0;
             while (firstNumStack.Count != 0 || secondNumStack.Count != 0)

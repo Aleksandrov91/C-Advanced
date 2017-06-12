@@ -1,8 +1,8 @@
-﻿using System;
-using System.Text;
-
-namespace _10.Unicode_Characters
+﻿namespace _10.Unicode_Characters
 {
+    using System;
+    using System.Text;
+
     public class UnicodeCharacters
     {
         public static void Main()
