@@ -3,7 +3,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace BashSoft
 {
-    public class BashSoftProgram
+    public class StartUp
     {
         public static void Main()
         {
@@ -17,15 +17,16 @@ namespace BashSoft
             //IOManager.CreateDirectoryInCurrentFolder("*Sasho");
             //IOManager.ChangeCurrentDirectoryAbsolute(@"C:\Windows");
             //IOManager.TraverseDirectory(20);
-            IOManager.ChangeCurrentDirectoryRelative("..");
-            IOManager.ChangeCurrentDirectoryRelative("..");
-            IOManager.ChangeCurrentDirectoryRelative("..");
-            IOManager.ChangeCurrentDirectoryRelative("..");
-            IOManager.ChangeCurrentDirectoryRelative("..");
-            IOManager.ChangeCurrentDirectoryRelative("..");
-            IOManager.ChangeCurrentDirectoryRelative("..");
-            IOManager.ChangeCurrentDirectoryRelative("..");
-            IOManager.ChangeCurrentDirectoryRelative("..");
+            //IOManager.ChangeCurrentDirectoryRelative("..");
+            //IOManager.ChangeCurrentDirectoryRelative("..");
+            //IOManager.ChangeCurrentDirectoryRelative("..");
+            //IOManager.ChangeCurrentDirectoryRelative("..");
+            //IOManager.ChangeCurrentDirectoryRelative("..");
+            //IOManager.ChangeCurrentDirectoryRelative("..");
+            //IOManager.ChangeCurrentDirectoryRelative("..");
+            //IOManager.ChangeCurrentDirectoryRelative("..");
+            //IOManager.ChangeCurrentDirectoryRelative("..");
+            InputReader.StartReadingCommands();
 
         }
     }

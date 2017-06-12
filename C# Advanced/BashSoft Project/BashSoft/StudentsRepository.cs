@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace BashSoft
 {
@@ -8,13 +9,13 @@ namespace BashSoft
         public static bool IsDataInitialized = false;
         private static Dictionary<string, Dictionary<string, List<int>>> studentsByCourse;
 
-        public static void InitializeData()
+        public static void InitializeData(string fileName)
         {
             if (!IsDataInitialized)
             {
                 OutputWriter.WriteMessageOnNewLine("Reading Data...");
                 studentsByCourse = new Dictionary<string, Dictionary<string, List<int>>>();
-                ReadsData();
+                ReadsData(fileName);
             }
             else
             {
@@ -22,30 +23,59 @@ namespace BashSoft
             }
         }
 
-        private static void ReadsData()
+        private static void ReadsData(string fileName)
         {
-            string input = Console.ReadLine();
+            //string input = Console.ReadLine();
 
-            while (!string.IsNullOrEmpty(input))
+            //while (!string.IsNullOrEmpty(input))
+            //{
+            //    string[] tokens = input.Split(' ');
+            //    string course = tokens[0];
+            //    string student = tokens[1];
+            //    int mark = int.Parse(tokens[2]);
+
+            //    if (!studentsByCourse.ContainsKey(course))
+            //    {
+            //        studentsByCourse[course] = new Dictionary<string, List<int>>();
+            //    }
+
+            //    if (!studentsByCourse[course].ContainsKey(student))
+            //    {
+            //        studentsByCourse[course][student] = new List<int>();
+            //    }
+
+            //    studentsByCourse[course][student].Add(mark);
+
+            //    input = Console.ReadLine();
+            //}
+
+            string path = SessionData.currentPath + "\\" + fileName;
+            if (File.Exists(path))
             {
-                string[] tokens = input.Split(' ');
-                string course = tokens[0];
-                string student = tokens[1];
-                int mark = int.Parse(tokens[2]);
+                string[] allInputLines = File.ReadAllLines(path);
 
-                if (!studentsByCourse.ContainsKey(course))
+                for (int line = 0; line < allInputLines.Length; line++)
                 {
-                    studentsByCourse[course] = new Dictionary<string, List<int>>();
+                    if (!string.IsNullOrEmpty(allInputLines[line]))
+                    {
+                        string[] data = allInputLines[line].Split(' ');
+                        string course = data[0];
+                        string student = data[1];
+                        int mark = int.Parse(data[2]);
+
+                        if (!studentsByCourse.ContainsKey(course))
+                        {
+                            studentsByCourse[course] = new Dictionary<string, List<int>>();
+                        }
+
+                        if (!studentsByCourse[course].ContainsKey(student))
+                        {
+                            studentsByCourse[course][student] = new List<int>();
+                        }
+
+                        studentsByCourse[course][student].Add(mark);
+                    }
                 }
-
-                if (!studentsByCourse[course].ContainsKey(student))
-                {
-                    studentsByCourse[course][student] = new List<int>();
-                }
-
-                studentsByCourse[course][student].Add(mark);
-
-                input = Console.ReadLine();
             }
 
             IsDataInitialized = true;
