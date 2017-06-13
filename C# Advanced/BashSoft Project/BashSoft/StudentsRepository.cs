@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-
-namespace BashSoft
+﻿namespace BashSoft
 {
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Text.RegularExpressions;
+
     public static class StudentsRepository
     {
         public static bool IsDataInitialized = false;
@@ -23,57 +23,60 @@ namespace BashSoft
             }
         }
 
+        public static void GetStudentScoreFromCourse(string courseName, string username)
+        {
+            if (IsQueryForStudentPossiblе(courseName, username))
+            {
+                OutputWriter.PrintStudent(new KeyValuePair<string, List<int>>(username, studentsByCourse[courseName][username]));
+            }
+        }
+
+        public static void GetAllStudentsFromCourse(string courseName)
+        {
+            if (IsQueryForCoursePossible(courseName))
+            {
+                OutputWriter.WriteMessageOnNewLine($"{courseName}:");
+                foreach (var studentMarksEntry in studentsByCourse[courseName])
+                {
+                    OutputWriter.PrintStudent(studentMarksEntry);
+                }
+            }
+        }
+
         private static void ReadsData(string fileName)
         {
-            //string input = Console.ReadLine();
-
-            //while (!string.IsNullOrEmpty(input))
-            //{
-            //    string[] tokens = input.Split(' ');
-            //    string course = tokens[0];
-            //    string student = tokens[1];
-            //    int mark = int.Parse(tokens[2]);
-
-            //    if (!studentsByCourse.ContainsKey(course))
-            //    {
-            //        studentsByCourse[course] = new Dictionary<string, List<int>>();
-            //    }
-
-            //    if (!studentsByCourse[course].ContainsKey(student))
-            //    {
-            //        studentsByCourse[course][student] = new List<int>();
-            //    }
-
-            //    studentsByCourse[course][student].Add(mark);
-
-            //    input = Console.ReadLine();
-            //}
-
             string path = SessionData.currentPath + "\\" + fileName;
             if (File.Exists(path))
             {
+                string pattern =
+                    @"^([A-Z][A-Za-z+#]*_[A-Z][a-z]{2}_201[4567])\s+([A-Z][a-z]{0,3}\d{2}_\d{2,4})\s+(100|[1-9][0-9]|[1-9])$";
+                Regex rgx = new Regex(pattern);
                 string[] allInputLines = File.ReadAllLines(path);
 
                 for (int line = 0; line < allInputLines.Length; line++)
                 {
-                    if (!string.IsNullOrEmpty(allInputLines[line]))
+                    if (!string.IsNullOrEmpty(allInputLines[line]) && rgx.IsMatch(allInputLines[line]))
                     {
-                        string[] data = allInputLines[line].Split(' ');
-                        string course = data[0];
-                        string student = data[1];
-                        int mark = int.Parse(data[2]);
+                        Match curentMatch = rgx.Match(allInputLines[line]);
+                        string courseName = curentMatch.Groups[1].Value;
+                        string userName = curentMatch.Groups[2].Value;
+                        int studentScoreOnTask;
+                        bool hasParseScore = int.TryParse(curentMatch.Groups[3].Value, out studentScoreOnTask);
 
-                        if (!studentsByCourse.ContainsKey(course))
+                        if (hasParseScore /*&& studentScoreOnTask >= 0 && studentScoreOnTask <= 100*/)
                         {
-                            studentsByCourse[course] = new Dictionary<string, List<int>>();
-                        }
+                            if (!studentsByCourse.ContainsKey(courseName))
+                            {
+                                studentsByCourse[courseName] = new Dictionary<string, List<int>>();
+                            }
 
-                        if (!studentsByCourse[course].ContainsKey(student))
-                        {
-                            studentsByCourse[course][student] = new List<int>();
-                        }
+                            if (!studentsByCourse[courseName].ContainsKey(userName))
+                            {
+                                studentsByCourse[courseName][userName] = new List<int>();
+                            }
 
-                        studentsByCourse[course][student].Add(mark);
+                            studentsByCourse[courseName][userName].Add(studentScoreOnTask);
+                        }
                     }
                 }
             }
@@ -115,26 +118,6 @@ namespace BashSoft
             }
 
             return false;
-        }
-
-        public static void GetStudentScoreFromCourse(string courseName, string username)
-        {
-            if (IsQueryForStudentPossiblе(courseName, username))
-            {
-                OutputWriter.PrintStudent(new KeyValuePair<string, List<int>>(username, studentsByCourse[courseName][username]));
-            }
-        }
-
-        public static void GetAllStudentsFromCourse(string courseName)
-        {
-            if (IsQueryForCoursePossible(courseName))
-            {
-                OutputWriter.WriteMessageOnNewLine($"{courseName}:");
-                foreach (var studentMarksEntry in studentsByCourse[courseName])
-                {
-                    OutputWriter.PrintStudent(studentMarksEntry);
-                }
-            }
         }
     }
 }

@@ -1,8 +1,8 @@
-﻿using System;
-using System.IO;
-
-namespace BashSoft
+﻿namespace BashSoft
 {
+    using System;
+    using System.IO;
+
     public static class Tester
     {
         public static void CompareContent(string userOutputPath, string expectedOutputPath)
@@ -73,8 +73,7 @@ namespace BashSoft
                 string expectedLine = expectedOutputLines[i];
                 if (!actualLine.Equals(expectedLine))
                 {
-                    output = string.Format("Mismatch at line {0} -- expected: \"{1}\", actual: \"{2}\"", i, expectedLine,
-                        actualLine);
+                    output = string.Format("Mismatch at line {0} -- expected: \"{1}\", actual: \"{2}\"", i, expectedLine, actualLine);
                     output += Environment.NewLine;
                     hasMismatch = true;
                 }

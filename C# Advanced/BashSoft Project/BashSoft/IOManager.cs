@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-
-namespace BashSoft
+﻿namespace BashSoft
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+
     public static class IOManager
     {
         public static void TraverseDirectory(int depth)
@@ -23,8 +23,7 @@ namespace BashSoft
                     break;
                 }
 
-                OutputWriter.WriteMessageOnNewLine(string.Format("{0}{1}",
-                    new string('-', identation), currentPath));
+                OutputWriter.WriteMessageOnNewLine(string.Format("{0}{1}", new string('-', identation), currentPath));
 
                 try
                 {
@@ -60,11 +59,6 @@ namespace BashSoft
             }
         }
 
-        private static string GetCurrentDirectoryPath()
-        {
-            return SessionData.currentPath;
-        }
-
         public static void ChangeCurrentDirectoryRelative(string relativePath)
         {
             if (relativePath == "..")
@@ -98,6 +92,11 @@ namespace BashSoft
             }
 
             SessionData.currentPath = absolutePath;
+        }
+
+        private static string GetCurrentDirectoryPath()
+        {
+            return SessionData.currentPath;
         }
     }
 }

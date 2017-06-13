@@ -1,18 +1,17 @@
-﻿using System;
-using System.Diagnostics;
-
-namespace BashSoft
+﻿namespace BashSoft
 {
+    using System;
+
     public static class InputReader
     {
-        private const string endCommand = "quit";
+        private const string EndCommand = "quit";
 
         public static void StartReadingCommands()
         {
             OutputWriter.WriteMessage($"{SessionData.currentPath}>");
             string input = Console.ReadLine().Trim();
 
-            while (input != endCommand)
+            while (input != EndCommand)
             {
                 CommandInterpreter.InterpredCommand(input);
                 OutputWriter.WriteMessage($"{SessionData.currentPath}>");
