@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace _02.Sum_Numbers
+﻿namespace _02.Sum_Numbers
 {
+    using System;
+    using System.Linq;
+
     public class SumNumbers
     {
         public static void Main()
@@ -13,14 +12,6 @@ namespace _02.Sum_Numbers
                 .Select(int.Parse)
                 .ToList()
                 .PrintSumAndCount());
-        }
-    }
-
-    public static class ExtensionMethods
-    {
-        public static string PrintSumAndCount(this List<int> list)
-        {
-            return $"{list.Count}\r\n{list.Sum()}";
         }
     }
 }

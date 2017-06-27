@@ -1,8 +1,8 @@
-﻿using System;
-using System.Linq;
-
-namespace _04.Add_VAT
+﻿namespace _04.Add_VAT
 {
+    using System;
+    using System.Linq;
+
     public class AddVAT
     {
         public static void Main()
