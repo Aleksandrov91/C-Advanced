@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace _09.List_Of_Predicates
+﻿namespace _09.List_Of_Predicates
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class ListOfPredicates
     {
         public static void Main()

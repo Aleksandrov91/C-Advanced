@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace _10.Predicate_Party
+﻿namespace _10.Predicate_Party
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class PredicateParty
     {
         public static void Main()
@@ -37,7 +37,6 @@ namespace _10.Predicate_Party
                     {
                         RemoveGuests(guests, filteredGuests, data, length);
                     }
-
                 }
                 else if (command == "Double")
                 {

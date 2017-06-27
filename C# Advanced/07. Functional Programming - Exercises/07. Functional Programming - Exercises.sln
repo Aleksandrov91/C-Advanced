@@ -25,6 +25,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10. Predicate Party", "10. 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "11. The Party Reservation Filter Module", "11. The Party Reservation Filter Module\11. The Party Reservation Filter Module.csproj", "{74B2468B-2766-48B9-B455-720A0070CD73}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "12. Inferno III", "12. Inferno III\12. Inferno III.csproj", "{80F29EAA-E529-40C9-866A-828A4098A51A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "13. TriFunction", "13. TriFunction\13. TriFunction.csproj", "{5256F52C-AD7E-4909-9E57-EAA1CBF0AF41}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +79,14 @@ Global
 		{74B2468B-2766-48B9-B455-720A0070CD73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74B2468B-2766-48B9-B455-720A0070CD73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74B2468B-2766-48B9-B455-720A0070CD73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80F29EAA-E529-40C9-866A-828A4098A51A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80F29EAA-E529-40C9-866A-828A4098A51A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80F29EAA-E529-40C9-866A-828A4098A51A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80F29EAA-E529-40C9-866A-828A4098A51A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5256F52C-AD7E-4909-9E57-EAA1CBF0AF41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5256F52C-AD7E-4909-9E57-EAA1CBF0AF41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5256F52C-AD7E-4909-9E57-EAA1CBF0AF41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5256F52C-AD7E-4909-9E57-EAA1CBF0AF41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

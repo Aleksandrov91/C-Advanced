@@ -1,9 +1,7 @@
-﻿using System;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-
-namespace _02.Knights_of_Honor
+﻿namespace _02.Knights_of_Honor
 {
+    using System;
+
     public class KnightsOfHonor
     {
         public static void Main()

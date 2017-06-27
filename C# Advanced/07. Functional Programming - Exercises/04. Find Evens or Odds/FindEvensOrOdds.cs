@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace _04.Find_Evens_or_Odds
+﻿namespace _04.Find_Evens_or_Odds
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class FindEvensOrOdds
     {
         public static void Main()

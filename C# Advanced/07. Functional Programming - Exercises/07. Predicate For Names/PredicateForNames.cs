@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace _07.Predicate_For_Names
+﻿namespace _07.Predicate_For_Names
 {
+    using System;
+
     public class PredicateForNames
     {
         public static void Main()

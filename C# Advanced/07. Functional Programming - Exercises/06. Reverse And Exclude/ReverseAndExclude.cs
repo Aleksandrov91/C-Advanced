@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace _06.Reverse_And_Exclude
+﻿namespace _06.Reverse_And_Exclude
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class ReverseAndExclude
     {
         public static void Main()

@@ -1,8 +1,8 @@
-﻿using System;
-using System.Linq;
-
-namespace _01.Action_Print
+﻿namespace _01.Action_Print
 {
+    using System;
+    using System.Linq;
+
     public class ActionPrint
     {
         public static void Main()
