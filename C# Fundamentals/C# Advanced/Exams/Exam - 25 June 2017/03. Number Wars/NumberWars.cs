@@ -1,137 +1,99 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace _03.Number_Wars
+﻿namespace Number_Wars
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class NumberWars
     {
         private static Queue<string> firstPlayerCards;
         private static Queue<string> secondPlayerCards;
-        private static int turns = 1;
-        private static bool hasWinner = false;
+        private static List<string> cards = new List<string>();
 
-        public static void Main()
+        public static void Main(string[] args)
         {
             firstPlayerCards = new Queue<string>(Console.ReadLine()
-                .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
-                .Reverse());
+                .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
             secondPlayerCards = new Queue<string>(Console.ReadLine()
-                .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
-                .Reverse());
-
-            while (firstPlayerCards.Count != 0 && secondPlayerCards.Count != 0 && turns <= 1000000)
+                .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
+            var turn = 0;
+            while (firstPlayerCards.Count != 0 && secondPlayerCards.Count != 0 && turn <= 1_000_000)
             {
-                var equals = PutCard(firstPlayerCards.Dequeue(), secondPlayerCards.Dequeue());
-                if (equals)
-                {
-                    MakeWar();
-                }
-                if (hasWinner)
-                {
-                    break;
-                }
-                turns++;
+                turn++;
+                MakeATurn();
             }
 
-            CheckWinner();
+            PrintWinner(turn);
         }
 
-        private static void CheckWinner()
+        private static void PrintWinner(int turns)
         {
-            if (secondPlayerCards.Count == 0 && firstPlayerCards.Count != 0 ||
-                secondPlayerCards.Count < firstPlayerCards.Count)
+            if (firstPlayerCards.Count > secondPlayerCards.Count)
             {
                 Console.WriteLine($"First player wins after {turns} turns");
             }
-            else if (firstPlayerCards.Count == 0 && secondPlayerCards.Count != 0 ||
-                firstPlayerCards.Count < secondPlayerCards.Count)
+            else if (secondPlayerCards.Count > firstPlayerCards.Count)
             {
-                Console.WriteLine($"Second player wins after {turns} turns");
-            }
-            else if (firstPlayerCards.Count == secondPlayerCards.Count)
-            {
-                Console.WriteLine($"Draw after {turns}");
-            }
-        }
-
-        private static bool PutCard(string firstCard, string secondCard)
-        {
-            var firstCardPower = int.Parse(firstCard.Substring(0, firstCard.Length - 1));
-            var secondCardPower = int.Parse(secondCard.Substring(0, secondCard.Length - 1));
-            var firstCharPower = (int)(firstCard[firstCard.Length - 1] - 'a');
-            var secondCharPower = (int)(secondCard[secondCard.Length - 1] - 'a');
-            int firstCardTotalPower = firstCardPower + firstCharPower;
-            int secondCardTotalPower = secondCardPower + secondCharPower;
-
-            if (firstCardPower > secondCardPower)
-            {
-                if (firstCardTotalPower >= secondCardTotalPower)
-                {
-                    firstPlayerCards.Enqueue(firstCard);
-                    firstPlayerCards.Enqueue(secondCard);
-                    return false;
-
-                else
-                {
-                    firstPlayerCards.Enqueue(secondCard);
-                    firstPlayerCards.Enqueue(firstCard);
-                    return false;
-                }
-                
-            }
-            else if (firstCardPower < secondCardPower)
-            {
-                if (firstCardTotalPower > secondCardTotalPower)
-                {
-                    secondPlayerCards.Enqueue(firstCard);
-                    secondPlayerCards.Enqueue(secondCard);
-                    return false;
-                }
-                else
-                {
-                    secondPlayerCards.Enqueue(secondCard);
-                    secondPlayerCards.Enqueue(firstCard);
-                    return false;
-                }
+                Console.WriteLine($"Second player winds after {turns} turns");
             }
             else
             {
-                return true;
+                Console.WriteLine($"Draw after {turns} turns");
+            }
+        }
+
+        private static void MakeATurn()
+        {
+            var firstCard = firstPlayerCards.Dequeue();
+            var secondCard = secondPlayerCards.Dequeue();
+
+            var firstCardPower = long.Parse(firstCard.Substring(0, firstCard.Length - 1));
+            var secondCardPower = long.Parse(secondCard.Substring(0, secondCard.Length - 1));
+
+            if (firstCardPower > secondCardPower)
+            {
+                firstPlayerCards.Enqueue(firstCard);
+                firstPlayerCards.Enqueue(secondCard);
+            }
+            else if (firstCardPower < secondCardPower)
+            {
+                secondPlayerCards.Enqueue(secondCard);
+                secondPlayerCards.Enqueue(firstCard);
+            }
+            else
+            {
+                MakeWar();
             }
         }
 
         private static void MakeWar()
         {
-            if (firstPlayerCards.Count < 3 && secondPlayerCards.Count >= 3 ||
-                secondPlayerCards.Count < 3 && firstPlayerCards.Count > 3)
+            if (firstPlayerCards.Count < 3 || secondPlayerCards.Count < 3)
             {
-                CheckWinner();
-                return;
-            }
-            else if (firstPlayerCards.Count == secondPlayerCards.Count)
-            {
-                Console.WriteLine($"Draws after {turns}");
                 return;
             }
 
-            var cards = new List<string>();
-            var firstPWarPower = 0;
-            var secondPWarPower = 0;
+            var firstPWarPower = 0L;
+            var secondPWarPower = 0L;
             for (int i = 0; i < 3; i++)
             {
                 var firstPCard = firstPlayerCards.Dequeue();
                 var secondPCard = secondPlayerCards.Dequeue();
                 cards.Add(firstPCard);
                 cards.Add(secondPCard);
-                var firstCharPower = (int)(firstPCard[firstPCard.Length - 1] - 'a');
-                var secondCharPower = (int)(secondPCard[secondPCard.Length - 1] - 'a');
+                //var firstCharPower = (int)(firstPCard[firstPCard.Length - 1] - 'a' + 1);
+                var firstCharPower = (int)(firstPCard[firstPCard.Length - 1]);
+                //var secondCharPower = (int)(secondPCard[secondPCard.Length - 1] - 'a' + 1);
+                var secondCharPower = (int)secondPCard[secondPCard.Length - 1];
 
                 firstPWarPower += firstCharPower;
                 secondPWarPower += secondCharPower;
             }
 
-            cards = cards.OrderByDescending(x => x).ToList();
+            cards = cards
+                .OrderByDescending(x => int.Parse(x.Substring(0, x.Length - 1)))
+                /*.ThenByDescending(x => string.Join(string.Empty, x.Select(ch => (int)ch - 'a' + 1)))*/
+                .ThenByDescending(x => x[x.Length - 1]).ToList();
 
             if (firstPWarPower > secondPWarPower)
             {
@@ -139,6 +101,8 @@ namespace _03.Number_Wars
                 {
                     firstPlayerCards.Enqueue(cards[i]);
                 }
+
+                cards.Clear();
             }
             else if (firstPWarPower < secondPWarPower)
             {
@@ -146,6 +110,8 @@ namespace _03.Number_Wars
                 {
                     secondPlayerCards.Enqueue(cards[i]);
                 }
+
+                cards.Clear();
             }
             else
             {

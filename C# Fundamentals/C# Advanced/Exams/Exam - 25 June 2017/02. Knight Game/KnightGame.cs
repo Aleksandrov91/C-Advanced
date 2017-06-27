@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace _02.Knight_Game
+﻿namespace _02.Knight_Game
 {
+    using System;
+
     public class KnightGame
     {
         public static void Main()

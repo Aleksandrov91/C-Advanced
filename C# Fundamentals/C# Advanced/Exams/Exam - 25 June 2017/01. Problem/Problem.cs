@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.RegularExpressions;
-
-namespace _01.Problem
+﻿namespace _01.Problem
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using System.Text.RegularExpressions;
+
     public class Problem
     {
         public static void Main()
         {
-            //var pattern = @"(\[(?>[^\[\]]+|(?1))*\])";
             var secondMatch = @"\[[^\s]+<(\d+)REGEH(\d+)>[^\s]+";
             var input = Console.ReadLine();
             var indexes = new Queue<int>();
@@ -33,6 +32,7 @@ namespace _01.Problem
             {
                 return;
             }
+
             var currentIndex = indexes.Dequeue();
             while (indexes.Count != 0)
             {

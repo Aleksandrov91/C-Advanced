@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace _04.Hospital
+﻿namespace _04.Hospital
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class Hospital
     {
         public static void Main()
@@ -14,7 +14,7 @@ namespace _04.Hospital
             var inputLine = Console.ReadLine();
             while (inputLine != "Output")
             {
-                var inputData = inputLine.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
+                var inputData = inputLine.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                 var department = inputData[0];
                 var doctor = inputData[1] + " " + inputData[2];
                 var patient = inputData[3];
@@ -23,31 +23,31 @@ namespace _04.Hospital
                 {
                     doctorsAndPatients[doctor] = new HashSet<string>();
                 }
+
                 if (!departments.ContainsKey(department))
                 {
                     departments[department] = new Dictionary<int, string[]>()
                     {
-                        {1, new string[3]},
-                        {2, new string[3]},
-                        {3, new string[3]},
-                        {4, new string[3]},
-                        {5, new string[3]},
-                        {6, new string[3]},
-                        {7, new string[3]},
-                        {8, new string[3]},
-                        {9, new string[3]},
-                        {10, new string[3]},
-                        {11, new string[3]},
-                        {12, new string[3]},
-                        {13, new string[3]},
-                        {14, new string[3]},
-                        {15, new string[3]},
-                        {16, new string[3]},
-                        {17, new string[3]},
-                        {18, new string[3]},
-                        {19, new string[3]},
-                        {20, new string[3]},
-
+                        { 1, new string[3] },
+                        { 2, new string[3] },
+                        { 3, new string[3] },
+                        { 4, new string[3] },
+                        { 5, new string[3] },
+                        { 6, new string[3] },
+                        { 7, new string[3] },
+                        { 8, new string[3] },
+                        { 9, new string[3] },
+                        { 10, new string[3] },
+                        { 11, new string[3] },
+                        { 12, new string[3] },
+                        { 13, new string[3] },
+                        { 14, new string[3] },
+                        { 15, new string[3] },
+                        { 16, new string[3] },
+                        { 17, new string[3] },
+                        { 18, new string[3] },
+                        { 19, new string[3] },
+                        { 20, new string[3] }
                     };
                 }
 
@@ -120,12 +120,8 @@ namespace _04.Hospital
                     }
                 }
 
-
                 outputCommand = Console.ReadLine();
             }
-
-
-            
         }
     }
 }
