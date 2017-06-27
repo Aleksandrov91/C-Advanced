@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelectivеAmnesia", "SelectivеAmnesia\SelectivеAmnesia.csproj", "{2F579ACE-4C09-4BEB-A3AA-F51B61D2935E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodShop", "FoodShop\FoodShop.csproj", "{DCF32E5F-4567-46D9-9432-D589828A879E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessValidator", "ChessValidator\ChessValidator.csproj", "{5B3F091F-4FBA-4518-9988-BFEA90DED6DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brackets", "Brackets\Brackets.csproj", "{0C22D572-FAA1-4356-8FFE-CF52CBA7758B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2F579ACE-4C09-4BEB-A3AA-F51B61D2935E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F579ACE-4C09-4BEB-A3AA-F51B61D2935E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F579ACE-4C09-4BEB-A3AA-F51B61D2935E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F579ACE-4C09-4BEB-A3AA-F51B61D2935E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCF32E5F-4567-46D9-9432-D589828A879E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCF32E5F-4567-46D9-9432-D589828A879E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCF32E5F-4567-46D9-9432-D589828A879E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCF32E5F-4567-46D9-9432-D589828A879E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B3F091F-4FBA-4518-9988-BFEA90DED6DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B3F091F-4FBA-4518-9988-BFEA90DED6DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B3F091F-4FBA-4518-9988-BFEA90DED6DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B3F091F-4FBA-4518-9988-BFEA90DED6DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C22D572-FAA1-4356-8FFE-CF52CBA7758B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C22D572-FAA1-4356-8FFE-CF52CBA7758B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C22D572-FAA1-4356-8FFE-CF52CBA7758B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C22D572-FAA1-4356-8FFE-CF52CBA7758B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
