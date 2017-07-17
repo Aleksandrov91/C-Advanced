@@ -3,6 +3,10 @@ using System.Linq;
 
 public class Person
 {
+    private string name;
+    private int age;
+    private List<BankAccount> accounts;
+
     public Person(string name, int age)
     {
         this.Name = name;
@@ -15,10 +19,6 @@ public class Person
     {
         this.accounts = accounts;
     }
-
-    private string name;
-    private int age;
-    private List<BankAccount> accounts;
 
     public string Name
     {

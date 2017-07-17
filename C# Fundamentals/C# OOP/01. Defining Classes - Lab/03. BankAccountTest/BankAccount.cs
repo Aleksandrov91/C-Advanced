@@ -1,16 +1,16 @@
-﻿using System;
-
-namespace _03.BankAccountTest
+﻿namespace _03.BankAccountTest
 {
+    using System;
+
     public class BankAccount
     {
+        private int id;
+        private double balance;
+
         public BankAccount(int id)
         {
             this.ID = id;
         }
-
-        private int id;
-        private double balance;
 
         public int ID
         {
@@ -18,10 +18,13 @@ namespace _03.BankAccountTest
             set { this.id = value; }
         }
 
-
         public double Balance
         {
-            get { return this.balance; }
+            get
+            {
+                return this.balance;
+            }
+
             set
             {
                 if (value < 0)

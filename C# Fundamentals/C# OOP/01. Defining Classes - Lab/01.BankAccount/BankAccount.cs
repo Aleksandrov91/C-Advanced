@@ -1,4 +1,4 @@
-﻿class BankAccount
+﻿public class BankAccount
 {
     private int id;
     private double balance;
@@ -15,4 +15,3 @@
         set { this.balance = value; }
     }
 }
-

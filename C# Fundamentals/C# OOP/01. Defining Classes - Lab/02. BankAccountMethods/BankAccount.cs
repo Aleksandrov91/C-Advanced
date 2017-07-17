@@ -13,7 +13,11 @@ public class BankAccount
 
     public double Balance
     {
-        get { return this.balance; }
+        get
+        {
+            return this.balance;
+        }
+
         set
         {
             if (value < 0)
