@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01. WeekDay", "01. WeekDay\01. WeekDay.csproj", "{8C28A478-64C6-4097-8FF2-6388540F9A4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02. CoffeeMachine", "02. CoffeeMachine\02. CoffeeMachine.csproj", "{F1DFEFBB-DA23-4B38-9E48-325EE536A144}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03. Attributes", "03. Attributes\03. Attributes.csproj", "{56F5CBB9-88ED-4D76-9DC0-F4BAE2BB4691}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8C28A478-64C6-4097-8FF2-6388540F9A4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C28A478-64C6-4097-8FF2-6388540F9A4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C28A478-64C6-4097-8FF2-6388540F9A4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C28A478-64C6-4097-8FF2-6388540F9A4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1DFEFBB-DA23-4B38-9E48-325EE536A144}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1DFEFBB-DA23-4B38-9E48-325EE536A144}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1DFEFBB-DA23-4B38-9E48-325EE536A144}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1DFEFBB-DA23-4B38-9E48-325EE536A144}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56F5CBB9-88ED-4D76-9DC0-F4BAE2BB4691}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56F5CBB9-88ED-4D76-9DC0-F4BAE2BB4691}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56F5CBB9-88ED-4D76-9DC0-F4BAE2BB4691}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56F5CBB9-88ED-4D76-9DC0-F4BAE2BB4691}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
