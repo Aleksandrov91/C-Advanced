@@ -92,7 +92,7 @@
 
             cards = cards
                 .OrderByDescending(x => int.Parse(x.Substring(0, x.Length - 1)))
-                /*.ThenByDescending(x => string.Join(string.Empty, x.Select(ch => (int)ch - 'a' + 1)))*/
+                .ThenByDescending(x => string.Join(string.Empty, x.Select(ch => (int)ch - 'a' + 1)))
                 .ThenByDescending(x => x[x.Length - 1]).ToList();
 
             if (firstPWarPower > secondPWarPower)
